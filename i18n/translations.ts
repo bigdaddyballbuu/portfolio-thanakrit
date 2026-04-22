@@ -235,7 +235,7 @@ export const translations = {
       placeholder: "🔍 ค้นหา...",
     },
   },
-} as const;
+};
 
 export type Locale = keyof typeof translations;
-export type TranslationKeys = typeof translations.en;
+export type TranslationKeys = typeof translations.en | typeof translations.th;
