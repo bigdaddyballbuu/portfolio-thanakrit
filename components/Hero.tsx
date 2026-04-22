@@ -43,7 +43,7 @@ export default function Hero() {
           >
             {t.hero.viewProjects}
           </button>
-          <a href="/ThanakritRESUME.pdf" download className="fb-btn">
+          <a href="/Thanakrit-RESUME.pdf" download className="fb-btn">
             {t.hero.downloadResume}
           </a>
         </div>

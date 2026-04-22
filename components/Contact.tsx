@@ -6,7 +6,7 @@ const socials = [
   {
     key: "email",
     icon: "✉️",
-    href: "https://mail.google.com/mail/?view=cm&to=thanakritcys2002@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=thanakritcys2002@gmail.com",
     label: "thanakritcys2002@gmail.com",
   },
   {
@@ -32,6 +32,15 @@ const socials = [
 export default function Contact() {
   const { t } = useLanguage();
 
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      window.location.href = "mailto:thanakritcys2002@gmail.com";
+    } else {
+      window.open("https://mail.google.com/mail/?view=cm&fs=1&to=thanakritcys2002@gmail.com", "_blank");
+    }
+  };
+
   return (
     <div id="contact" className="fb-box">
       <div className="fb-box-header">
@@ -48,19 +57,12 @@ export default function Contact() {
                   {t.contact[social.key as keyof typeof t.contact]}
                 </div>
                 {social.key === "email" ? (
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    <a href={`mailto:${social.label}`}>
-                      {social.label}
-                    </a>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ fontSize: 12, color: "#999" }}
-                    >
-                      (Gmail)
-                    </a>
-                  </div>
+                  <a
+                    href="mailto:thanakritcys2002@gmail.com"
+                    onClick={handleEmailClick}
+                  >
+                    {social.label}
+                  </a>
                 ) : (
                   <a
                     href={social.href}
