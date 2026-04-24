@@ -31,18 +31,27 @@ export default function Hero() {
         <p className="fb-profile-subtitle">{t.hero.subtitle}</p>
 
         <div className="fb-profile-actions">
-          <button className="fb-btn fb-btn-primary">
+          <a
+            href="https://www.facebook.com/bigdaddyballbuu2002"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fb-btn fb-btn-primary"
+            style={{ textDecoration: "none", display: "inline-block", textAlign: "center" }}
+          >
             {t.hero.addFriend}
-          </button>
+          </a>
           <button className="fb-btn" onClick={() => alert(t.hero.pokeAlert)}>
             {t.hero.poke}
           </button>
-          <button
+          <a
+            href="https://thanakritportfolio.carrd.co/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="fb-btn fb-btn-blue"
-            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            style={{ textDecoration: "none", display: "inline-block", textAlign: "center" }}
           >
             {t.hero.viewProjects}
-          </button>
+          </a>
           <a href="/Thanakrit-RESUME.pdf" download className="fb-btn">
             {t.hero.downloadResume}
           </a>

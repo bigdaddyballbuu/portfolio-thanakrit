@@ -57,16 +57,16 @@ export const translations = {
         tech: ["React", "TypeScript", "Supabase", "Tailwind CSS"],
       },
       project2: {
-        title: "MOBA AI Coach",
+        title: "Phornsanun-Incense Shop",
         description:
-          "An AI-powered game analysis tool that provides strategic advice by analyzing game screenshots using machine learning.",
-        tech: ["React", "Vite", "Python", "AI/ML"],
+          "A backend inventory management web application designed to track stock and manage internal operations for Phornsanun Incense Shop.",
+        tech: ["React", "Next.js", "Tailwind CSS"],
       },
       project3: {
         title: "IT Support & Website Admin",
         description:
           "Provided IT support and served as website administrator for SENd — managing the company website, troubleshooting hardware/software issues, setting up network infrastructure, and maintaining systems.",
-        tech: ["WordPress", "Networking", "Windows", "Hardware", "Remote Desktop"],
+        tech: ["Website Maintenance", "Networking", "Windows", "Hardware", "Remote Desktop"],
       },
       project4: {
         title: "SENd ส่ง-ซัก",
@@ -175,16 +175,16 @@ export const translations = {
         tech: ["React", "TypeScript", "Supabase", "Tailwind CSS"],
       },
       project2: {
-        title: "MOBA AI Coach",
+        title: "ร้านธูปหอมพรสนั่น",
         description:
-          "เครื่องมือวิเคราะห์เกมที่ขับเคลื่อนด้วย AI ให้คำแนะนำกลยุทธ์โดยวิเคราะห์ภาพหน้าจอเกมด้วย Machine Learning",
-        tech: ["React", "Vite", "Python", "AI/ML"],
+          "เว็บแอปพลิเคชันระบบจัดการคลังสินค้า สำหรับร้านธูปหอมพรสนั่น เพื่อจัดการสต๊อกและข้อมูลสินค้าภายในร้าน",
+        tech: ["React", "JavaScript", "Tailwind CSS"],
       },
       project3: {
         title: "IT Support & ดูแลเว็บไซต์",
         description:
           "ให้บริการ IT Support และดูแลเว็บไซต์ในฐานะแอดมินของ SENd — ดูแลจัดการเว็บไซต์บริษัท แก้ไขปัญหาฮาร์ดแวร์/ซอฟต์แวร์ ติดตั้งระบบเครือข่าย และดูแลระบบภายในองค์กร",
-        tech: ["WordPress", "Networking", "Windows", "Hardware", "Remote Desktop"],
+        tech: ["Website Maintenance", "Networking", "Windows", "Hardware", "Remote Desktop"],
       },
       project4: {
         title: "SENd ส่ง-ซัก",
