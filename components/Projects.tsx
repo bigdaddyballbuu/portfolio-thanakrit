@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/i18n";
 
 interface ProjectData {
@@ -16,6 +16,41 @@ interface ProjectData {
 export default function Projects() {
   const { t } = useLanguage();
   const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
+  const [wallInput, setWallInput] = useState("");
+  const [customPosts, setCustomPosts] = useState<{ author: string; content: string; time: string }[]>([]);
+
+  // Keyboard Navigation for Lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightbox) return;
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowLeft" && lightbox.index > 0) {
+        setLightbox({ ...lightbox, index: lightbox.index - 1 });
+      }
+      if (e.key === "ArrowRight" && lightbox.index < lightbox.images.length - 1) {
+        setLightbox({ ...lightbox, index: lightbox.index + 1 });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightbox]);
+
+  // Swipe handlers for Lightbox
+  const touchStartX = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartX.current || !lightbox) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (diff > 50 && lightbox.index < lightbox.images.length - 1) {
+      setLightbox({ ...lightbox, index: lightbox.index + 1 }); // Swipe Left
+    } else if (diff < -50 && lightbox.index > 0) {
+      setLightbox({ ...lightbox, index: lightbox.index - 1 }); // Swipe Right
+    }
+    touchStartX.current = null;
+  };
 
   const projects: ProjectData[] = [
     {
@@ -65,6 +100,34 @@ export default function Projects() {
       ],
       emoji: "🖥️",
     },
+    {
+      ...t.projects.project5,
+      github: "",
+      website: "",
+      images: [
+        "/projects/project5_1.png",
+        "/projects/project5_2.png",
+        "/projects/project5_3.png"
+      ],
+      emoji: "🌐",
+    },
+    {
+      ...t.projects.project6,
+      github: "",
+      website: "",
+      images: [
+        "/projects/project6_1.png",
+        "/projects/project6_2.png",
+        "/projects/project6_3.png",
+        "/projects/project6_4.png",
+        "/projects/project6_5.png",
+        "/projects/project6_6.png",
+        "/projects/project6_7.png",
+        "/projects/project6_8.png"
+
+      ],
+      emoji: "🎨",
+    },
   ];
 
   return (
@@ -81,12 +144,39 @@ export default function Projects() {
             type="text"
             className="fb-wall-input-field"
             placeholder={t.projects.wallPlaceholder}
-            readOnly
+            value={wallInput}
+            onChange={(e) => setWallInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && wallInput.trim() !== "") {
+                setCustomPosts([{ author: "Guest", content: wallInput, time: t.projects.justNow }, ...customPosts]);
+                setWallInput("");
+              }
+            }}
           />
         </div>
 
         {/* Wall Posts */}
         <div style={{ padding: 0 }}>
+          {/* Custom Posts */}
+          {customPosts.map((post, idx) => (
+            <div className="fb-wall-post fade-in" key={`custom-${idx}`}>
+              <div className="fb-wall-post-header">
+                <div className="fb-wall-post-avatar">👤</div>
+                <div>
+                  <span className="fb-wall-post-author">{post.author}</span>
+                  <span className="fb-wall-post-meta"></span>
+                  <div className="fb-wall-post-meta">{post.time}</div>
+                </div>
+              </div>
+              <div className="fb-wall-post-content">{post.content}</div>
+              <div className="fb-wall-post-actions">
+                <span className="fb-action-btn" role="button" tabIndex={0} aria-label="Like">{t.projects.like}</span>
+                <span className="fb-action-btn" role="button" tabIndex={0} aria-label="Comment">{t.projects.comment}</span>
+                <span className="fb-action-btn" role="button" tabIndex={0} aria-label="Share">{t.projects.share}</span>
+              </div>
+            </div>
+          ))}
+
           {projects.map((project, idx) => (
             <div className="fb-wall-post" key={idx}>
               <div className="fb-wall-post-header">
@@ -117,9 +207,9 @@ export default function Projects() {
               </div>
 
               <div className="fb-wall-post-actions">
-                <span className="fb-action-btn">{t.projects.like}</span>
-                <span className="fb-action-btn">{t.projects.comment}</span>
-                <span className="fb-action-btn">{t.projects.share}</span>
+                <span className="fb-action-btn" role="button" tabIndex={0} aria-label="Like">{t.projects.like}</span>
+                <span className="fb-action-btn" role="button" tabIndex={0} aria-label="Comment">{t.projects.comment}</span>
+                <span className="fb-action-btn" role="button" tabIndex={0} aria-label="Share">{t.projects.share}</span>
                 <span style={{ color: "#999" }}>·</span>
                 {project.github && (
                   <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -140,6 +230,7 @@ export default function Projects() {
       {/* Lightbox Popup */}
       {lightbox && (
         <div
+          className="fb-lightbox-overlay"
           style={{
             position: "fixed",
             inset: 0,
@@ -150,11 +241,14 @@ export default function Projects() {
             justifyContent: "center",
           }}
           onClick={() => setLightbox(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <div onClick={(e) => e.stopPropagation()} style={{ position: "relative" }}>
             {/* Close */}
             <button
               onClick={() => setLightbox(null)}
+              aria-label="Close Lightbox"
               style={{
                 position: "fixed", top: 16, right: 20,
                 background: "none", border: "none", color: "#fff",
@@ -183,6 +277,7 @@ export default function Projects() {
             <img
               src={lightbox.images[lightbox.index]}
               alt=""
+              className="zoom-in"
               style={{
                 maxWidth: "85vw", maxHeight: "80vh",
                 objectFit: "contain", borderRadius: 4,
@@ -224,7 +319,6 @@ export default function Projects() {
 /* State-based Carousel — shows 1 image at a time */
 function ImageCarousel({ images, onClickImage }: { images: string[]; onClickImage: (idx: number) => void }) {
   const [current, setCurrent] = useState(0);
-  const [loadedCount, setLoadedCount] = useState(0);
   const [hasAnyImage, setHasAnyImage] = useState(true);
 
   if (!hasAnyImage) return null;
@@ -234,6 +328,7 @@ function ImageCarousel({ images, onClickImage }: { images: string[]; onClickImag
       {/* Current Image */}
       <div
         onClick={() => onClickImage(current)}
+        className="skeleton"
         style={{
           width: "100%",
           height: 280,
@@ -244,15 +339,16 @@ function ImageCarousel({ images, onClickImage }: { images: string[]; onClickImag
         }}
       >
         <img
+          key={images[current]}
           src={images[current]}
           alt=""
+          className="fade-in"
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
             display: "block",
           }}
-          onLoad={() => setLoadedCount((c) => c + 1)}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
             if (current === 0) setHasAnyImage(false);

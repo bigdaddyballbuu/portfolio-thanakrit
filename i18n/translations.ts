@@ -74,6 +74,16 @@ export const translations = {
           "A business landing page for SENd — a delivery and laundry service platform.",
         tech: ["React", "Vite", "TypeScript", "Tailwind CSS"],
       },
+      project5: {
+        title: "WordPress - Academic Services Office, RMU",
+        description: "Developed and maintained the WordPress website for the Academic Services Office at Rajabhat Maha Sarakham University.",
+        tech: ["WordPress", "PHP", "CSS"],
+      },
+      project6: {
+        title: "Product Design with Canva",
+        description: "Designed various product graphics, promotional materials, and digital assets using Canva.",
+        tech: ["Canva", "Graphic Design"],
+      },
     },
     experience: {
       title: "Experience",
@@ -191,6 +201,16 @@ export const translations = {
         description:
           "เว็บไซต์ Landing Page สำหรับ SENd — แพลตฟอร์มบริการรับส่งและซักเสื้อผ้า",
         tech: ["React", "Vite", "TypeScript", "Tailwind CSS"],
+      },
+      project5: {
+        title: "WordPress สำนักบริการวิชาการ มหาวิทยาลัยราชภัฏมหาสารคาม",
+        description: "พัฒนาและดูแลเว็บไซต์ WordPress ให้กับสำนักบริการวิชาการ มหาวิทยาลัยราชภัฏมหาสารคาม",
+        tech: ["WordPress", "PHP", "CSS"],
+      },
+      project6: {
+        title: "ออกแบบสินค้าด้วย Canva",
+        description: "ออกแบบกราฟิกสินค้า สื่อโปรโมท และสื่อดิจิทัลต่างๆ ด้วยโปรแกรม Canva",
+        tech: ["Canva", "Graphic Design"],
       },
     },
     experience: {
