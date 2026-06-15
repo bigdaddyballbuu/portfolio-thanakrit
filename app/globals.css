@@ -433,6 +433,16 @@ a:hover {
   background: linear-gradient(to bottom, #578a2e, #4a7827);
 }
 
+.fb-btn-orange {
+  background: linear-gradient(to bottom, #f29a38, #de7910);
+  border-color: #c96b0b;
+  color: #fff;
+}
+
+.fb-btn-orange:hover {
+  background: linear-gradient(to bottom, #de7910, #cf6f08);
+}
+
 .fb-btn-blue {
   background: linear-gradient(to bottom, #5b74a8, #4a6291);
   border-color: #3b5998;

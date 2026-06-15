@@ -52,9 +52,14 @@ export default function Hero() {
           >
             {t.hero.viewProjects}
           </a>
-          <a href="/Thanakrit-RESUME.pdf" download className="fb-btn">
-            {t.hero.downloadResume}
-          </a>
+          <div style={{ display: 'flex', gap: '8px', width: '100%', marginTop: '4px' }}>
+            <a href="/Thanakrit-RESUME-TH.pdf" download className="fb-btn fb-btn-orange">
+              {t.hero.downloadResumeTH}
+            </a>
+            <a href="/Thanakrit-RESUME-EN.pdf" download className="fb-btn fb-btn-orange">
+              {t.hero.downloadResumeEN}
+            </a>
+          </div>
         </div>
       </div>
     </div>

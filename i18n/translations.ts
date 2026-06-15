@@ -14,7 +14,8 @@ export const translations = {
       subtitle:
         "Building modern web applications and providing reliable technical solutions",
       viewProjects: "View Projects",
-      downloadResume: "Download Resume",
+      downloadResumeEN: "Download Resume (ENG)",
+      downloadResumeTH: "Download Resume (TH)",
       addFriend: "➕ Add as Friend",
       poke: "👉 Poke",
       pokeAlert: "👉 Poked!",
@@ -142,7 +143,8 @@ export const translations = {
       subtitle:
         "สร้างเว็บแอปพลิเคชันสมัยใหม่และให้บริการแก้ไขปัญหาด้านเทคนิค",
       viewProjects: "ดูผลงาน",
-      downloadResume: "ดาวน์โหลด Resume",
+      downloadResumeEN: "ดาวน์โหลด Resume (ENG)",
+      downloadResumeTH: "ดาวน์โหลด Resume (TH)",
       addFriend: "➕ เพิ่มเป็นเพื่อน",
       poke: "👉 สะกิด",
       pokeAlert: "👉 สะกิดแล้ว!",
